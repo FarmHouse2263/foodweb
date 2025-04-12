@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thai Delicious | อาหารไทยส่งตรงถึงบ้าน</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap');
+
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Prompt', sans-serif;
+        }
+
+        :root {
+            --primary: #ff6b00;
+            --primary-light: #ff8c33;
+            --primary-dark: #e55e00;
+            --secondary: #00b894;
+            --secondary-dark: #00a382;
+            --accent: #fb5656;
+            --dark: #2d3436;
+            --light: #f9f9f9;
+            --gray: #636e72;
+            --gray-light: #b2bec3;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            margin-right: 10px;
+            font-size: 2.2rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+            position: relative;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 0;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: white;
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        nav ul li a:hover {
+            color: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1200/600') no-repeat center center;
+            background-size: cover;
+            color: white;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 107, 0, 0.7), rgba(255, 0, 95, 0.7));
+            mix-blend-mode: overlay;
+            z-index: 1;
+        }
+
+        .floating-shape {
+            position: absolute;
+            opacity: 0.1;
+            background: white;
+            border-radius: 50%;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .shape1 {
+            width: 300px;
+            height: 300px;
+            top: -150px;
+            left: -150px;
+            animation-delay: 0s;
+        }
+
+        .shape2 {
+            width: 200px;
+            height: 200px;
+            bottom: -100px;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .shape3 {
+            width: 150px;
+            height: 150px;
+            top: 20%;
+            right: -75px;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-30px) rotate(180deg);
+            }
+            100% {
+                transform: translateY(0) rotate(360deg);
+            }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+
+        /* Category Section */
+        .categories {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .wave-top {
+            position: absolute;
+            top: -2px;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .wave-top svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 46px;
+            transform: rotateY(180deg);
+        }
+
+        .wave-top .shape-fill {
+            fill: var(--primary);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            display: inline-block;
+            padding-bottom: 15px;
+            position: relative;
+            letter-spacing: 2px;
+            color: var(--primary-dark);
+        }
+
+        .section-title h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            width: 50%;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-light), var(--primary), var(--primary-light));
+            border-radius: 5px;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .category-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .category-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 35px rgba(255, 107, 0, 0.15);
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            transform-origin: right;
+        }
+
+        .category-card:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .category-image {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .category-card:hover .category-image {
+            transform: scale(1.1);
+        }
+
+        .category-content {
+            padding: 1.8rem;
+            position: relative;
+        }
+
+        .category-content h3 {
+            margin-bottom: 0.8rem;
+            font-size: 1.4rem;
+            color: var(--primary-dark);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .category-card:hover .category-content h3 {
+            color: var(--accent);
+        }
+
+        .category-content p {
+            color: var(--gray);
+            margin-bottom: 1.2rem;
+            height: 40px;
+        }
+
+        /* Featured Products */
+        .featured-products {
+            background-color: #fff8f0;
+            padding: 5rem 2rem;
+            position: relative;
+        }
+
+        .wave-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='0.3' d='M0,128L48,144C96,160,192,192,288,176C384,160,480,96,576,90.7C672,85,768,139,864,138.7C960,139,1056,85,1152,80C1248,75,1344,117,1392,138.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E") no-repeat bottom;
+            background-size: cover;
+            z-index: 0;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .products-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, var(--accent), #fd3838);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            z-index: 1;
+            box-shadow: 0 5px 15px rgba(253, 56, 56, 0.3);
+        }
+
+        .product-image-wrapper {
+            position: relative;
+            overflow: hidden;
+            height: 200px;
+        }
+
+        .product-image {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.15);
+        }
+
+        .product-image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.4));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .product-card:hover .product-image-overlay {
+            opacity: 1;
+        }
+
+        .product-content {
+            padding: 1.8rem 1.5rem 1rem;
+            position: relative;
+        }
+
+        .product-content h3 {
+            margin-bottom: 0.7rem;
+            font-size: 1.4rem;
+            color: var(--dark);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .product-card:hover .product-content h3 {
+            color: var(--primary);
+        }
+
+        .product-content p {
+            color: var(--gray);
+            margin-bottom: 1.2rem;
+            height: 40px;
+            font-size: 0.95rem;
+        }
+
+        .product-rating {
+            color: #fdcb6e;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .price {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .price::after {
+            content: '';
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            bottom: -4px;
+            left: 0;
+            background: linear-gradient(to right, var(--primary-light), transparent);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 1.8rem;
+            border-radius: 50px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 107, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 0;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 0, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 10px rgba(255, 107, 0, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            box-shadow: none;
+        }
+
+        .btn-outline::before {
+            background: var(--primary);
+        }
+
+        .btn-outline:hover {
+            color: white;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+            box-shadow: 0 5px 15px rgba(0, 184, 148, 0.2);
+        }
+
+        .btn-secondary::before {
+            background: linear-gradient(135deg, var(--secondary-dark), #008a6c);
+        }
+
+        .btn-secondary:hover {
+            box-shadow: 0 8px 20px rgba(0, 184, 148, 0.3);
+        }
+
+        .add-to-cart {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.7rem 1.2rem;
+            font-size: 0.95rem;
+            border-radius: 50px;
+        }
+
+        .add-to-cart::before {
+            content: '🛒 ';
+            margin-right: 8px;
+            font-size: 1rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2.5rem;
+            perspective: 1000px;
+        }
+
+        .testimonial-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transform: rotateX(0deg);
+        }
+
+        .testimonial-card:hover {
+            transform: rotateX(5deg) translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 107, 0, 0.1);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 8rem;
+            color: rgba(255, 107, 0, 0.05);
+            font-family: serif;
+            line-height: 1;
+            z-index: 0;
+        }
+
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: 1.8rem;
+            color: var(--gray);
+            position: relative;
+            z-index: 1;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 1rem;
+            border: 3px solid var(--primary-light);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover .author-avatar {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(255, 107, 0, 0.2);
+        }
+
+        .author-name {
+            font-weight: bold;
+            color: var(--primary-dark);
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .author-rating {
+            color: #fdcb6e;
+            letter-spacing: 2px;
+        }
+
+        /* Call to Action */
+        .cta {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/api/placeholder/1200/400') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 107, 0, 0.3), rgba(255, 0, 95, 0.3));
+            z-index: 1;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .cta p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .cta .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            animation: pulse-btn 2s infinite;
+        }
+
+        @keyframes pulse-btn {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 107, 0, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(255, 107, 0, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 107, 0, 0);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 5rem 2rem 4rem;
+            position: relative;
+        }
+
+        .wave-top-footer {
+            position: absolute;
+            top: -1px;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .wave-top-footer svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 46px;
+        }
+
+        .wave-top-footer .shape-fill {
+            fill: var(--light);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.8rem;
+            position: relative;
+            padding-bottom: 12px;
+            color: var(--primary-light);
+        }
+
+        .footer-column h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), transparent);
+            border-radius: 5px;
+        }
+
+        .footer-column p {
+            color: #b2bec3;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-column ul li:hover {
+            transform: translateX(5px);
+        }
+
+        .footer-column ul li a {
+            color: #dfe6e9;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-column ul li a::before {
+            content: '→';
+            margin-right: 8px;
+            color: var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--primary-light);
+        }
+
+        .footer-column ul li a:hover::before {
+            transform: translateX(3px);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icons a {
+            color: white;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            font-size: 1.2rem;
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-5px) rotate(10deg);
+            box-shadow: 0 10px 20px rgba(255, 107, 0, 0.2);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 3rem;
+            margin-top: 3rem;
+            border-top: 1px solid #444;
+            color: #b2bec3;
+            font-size: 0.9rem;
+        }
+
+        .copyright a {
+            color: var(--primary-light);
+            text-decoration: none;
+        }
+
+        /* Cart Icon */
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            margin-left: 2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .cart-icon:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .cart-icon span {
+            font-size: 1.4rem;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: linear-gradient(135deg, var(--accent), #fd3838);
+            color: white;
+            font-size: 0.75rem;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 5px 10px rgba(253, 56, 56, 0.3);
+            animation: bounce 0.5s ease-in-out;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Shopping Cart */
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .cart-container {
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: 450px;
+            height: 100%;
+            background-color: white;
+            z-index: 1001;
+            padding: 2rem;
+            overflow-y: auto;
+            transition: right 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: -5px 0 30px rgba(0,0,0,0.1);
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f1f1f1;
+        }
+
+        .cart-close {
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            margin-bottom: 2rem;
+        }
+
+        .cart-item {
+            display: flex;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            margin-right: 1rem;
+            border-radius: 5px;
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+        }
+
+        .cart-item-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .cart-item-price {
+            color: #ff7700;
+            font-weight: bold;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            margin-top: 0.5rem;
+        }
+
+        .quantity-btn {
+            width: 25px;
+            height: 25px;
+            background-color: #eee;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .quantity-input {
+            width: 40px;
+            height: 25px;
+            text-align: center;
+            margin: 0 0.5rem;
+            border: 1px solid #eee;
+        }
+
+        .cart-total {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 2px solid #eee;
+        }
+
+        .cart-total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .cart-total-title {
+            font-weight: bold;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 1rem;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        /* Mobile Responsive */
+        @media screen and (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 0.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .cart-container {
+                width: 100%;
+                right: -100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🍽️</span>
+                <span>Thai Delicious</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">หน้าแรก</a></li>
+                    <li><a href="#">เมนู</a></li>
+                    <li><a href="#">โปรโมชั่น</a></li>
+                    <li><a href="#">เกี่ยวกับเรา</a></li>
+                    <li><a href="#">ติดต่อ</a></li>
+                    <li class="cart-icon">
+                        <span>🛒</span>
+                        <span class="cart-count">0</span>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>สุขใจอิ่มจัง ส่งตรงถึงบ้าน</h1>
+            <p>พร้อมส่งถึงหน้าบ้านภายใน 30 นาที</p>
+            <a class="btn" href="#">สั่งอาหารเลย</a>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="section-title">
+            <h2>หมวดหมู่อาหาร</h2>
+        </div>
+        <div class="category-grid">
+            <div class="category-card">
+                <img class="category-image" src="/api/placeholder/300/200" alt="อาหารจานเดียว">
+                <div class="category-content">
+                    <h3>อาหารจานเดียว</h3>
+                    <p>เมนูยอดนิยมที่ทานง่าย อิ่มเร็ว</p>
+                    <a class="btn btn-outline" href="#">ดูเมนู</a>
+                </div>
+            </div>
+            <div class="category-card">
+                <img class="category-image" src="/api/placeholder/300/200" alt="ต้มยำ แกง">
+                <div class="category-content">
+                    <h3>ต้มยำ แกง</h3>
+                    <p>รสชาติแซ่บ จัดจ้าน ถูกปากคนไทย</p>
+                    <a class="btn btn-outline" href="#">ดูเมนู</a>
+                </div>
+            </div>
+            <div class="category-card">
+                <img class="category-image" src="/api/placeholder/300/200" alt="ของทานเล่น">
+                <div class="category-content">
+                    <h3>ของทานเล่น</h3>
+                    <p>ทานเพลิน กับเมนูของทานเล่นหลากหลาย</p>
+                    <a class="btn btn-outline" href="#">ดูเมนู</a>
+                </div>
+            </div>
+            <div class="category-card">
+                <img class="category-image" src="/api/placeholder/300/200" alt="เครื่องดื่ม">
+                <div class="category-content">
+                    <h3>เครื่องดื่ม</h3>
+                    <p>เครื่องดื่มสดชื่น ดับกระหาย</p>
+                    <a class="btn btn-outline" href="#">ดูเมนู</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured-products">
+        <div class="products-container">
+            <div class="section-title">
+                <h2>เมนูแนะนำ</h2>
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img class="product-image" src="/api/placeholder/300/200" alt="ผัดไทยกุ้งสด">
+                    <div class="product-content">
+                        <h3>ผัดไทยกุ้งสด</h3>
+                        <p>ผัดไทยสูตรดั้งเดิม เส้นนุ่ม กุ้งสดใหญ่</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="price">฿89</span>
+                        <button class="btn add-to-cart" data-id="1" data-name="ผัดไทยกุ้งสด" data-price="89">เพิ่มลงตะกร้า</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img class="product-image" src="/api/placeholder/300/200" alt="ต้มยำกุ้งน้ำข้น">
+                    <div class="product-content">
+                        <h3>ต้มยำกุ้งน้ำข้น</h3>
+                        <p>ต้มยำกุ้งรสจัดจ้าน น้ำซุปเข้มข้น</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="price">฿120</span>
+                        <button class="btn add-to-cart" data-id="2" data-name="ต้มยำกุ้งน้ำข้น" data-price="120">เพิ่มลงตะกร้า</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img class="product-image" src="/api/placeholder/300/200" alt="ข้าวผัดปู">
+                    <div class="product-content">
+                        <h3>ข้าวผัดปู</h3>
+                        <p>ข้าวผัดเนื้อปูชิ้นใหญ่ หอมกลิ่นใบมะกรูด</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="price">฿100</span>
+                        <button class="btn add-to-cart" data-id="3" data-name="ข้าวผัดปู" data-price="100">เพิ่มลงตะกร้า</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img class="product-image" src="/api/placeholder/300/200" alt="แกงเขียวหวานไก่">
+                    <div class="product-content">
+                        <h3>แกงเขียวหวานไก่</h3>
+                        <p>แกงเขียวหวานเนื้อไก่นุ่ม ครบรสชาติไทย</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="price">฿90</span>
+                        <button class="btn add-to-cart" data-id="4" data-name="แกงเขียวหวานไก่" data-price="90">เพิ่มลงตะกร้า</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img class="product-image" src="/api/placeholder/300/200" alt="ส้มตำไทย">
+                    <div class="product-content">
+                        <h3>ส้มตำไทย</h3>
+                        <p>ส้มตำรสแซ่บ ถูกปากคนไทย</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="price">฿70</span>
+                        <button class="btn add-to-cart" data-id="5" data-name="ส้มตำไทย" data-price="70">เพิ่มลงตะกร้า</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img class="product-image" src="/api/placeholder/300/200" alt="ผัดกะเพราหมูสับไข่ดาว">
+                    <div class="product-content">
+                        <h3>ผัดกะเพราหมูสับไข่ดาว</h3>
+                        <p>ผัดกะเพราหมูสับรสจัด เสิร์ฟพร้อมไข่ดาว</p>
+                    </div>
+                    <div class="product-footer">
+                        <span class="price">฿85</span>
+                        <button class="btn add-to-cart" data-id="6" data-name="ผัดกะเพราหมูสับไข่ดาว" data-price="85">เพิ่มลงตะกร้า</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="section-title">
+            <h2>ลูกค้าของเรา</h2>
+        </div>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    "อาหารรสชาติอร่อยมาก ส่งไวมาก อาหารมาร้อนๆ ประทับใจในการบริการมากครับ แนะนำให้ลอง!"
+                </div>
+                <div class="testimonial-author">
+                    <img class="author-avatar" src="/api/placeholder/50/50" alt="ลูกค้า 1">
+                    <div>
+                        <div class="author-name">คุณสมชาย</div>
+                        <div class="author-rating">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    "เมนูหลากหลาย ราคาไม่แพง อาหารสด สะอาด จะกลับมาสั่งอีกแน่นอนค่ะ"
+                </div>
+                <div class="testimonial-author">
+                    <img class="author-avatar" src="/api/placeholder/50/50" alt="ลูกค้า 2">
+                    <div>
+                        <div class="author-name">คุณนุชนาถ</div>
+                        <div class="author-rating">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    "ต้มยำกุ้งอร่อยมาก รสชาติเหมือนร้านดังย่านเยาวราช ประทับใจมากครับ"
+                </div>
+                <div class="testimonial-author">
+                    <img class="author-avatar" src="/api/placeholder/50/50" alt="ลูกค้า 3">
+                    <div>
+                        <div class="author-name">คุณวิชัย</div>
+                        <div class="author-rating">⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta">
+        <div class="cta-content">
+            <h2>สั่งอาหารออนไลน์วันนี้</h2>
+            <p>รับส่วนลด 15% สำหรับการสั่งครั้งแรก พร้อมส่งฟรีในระยะ 5 กม.</p>
+            <a class="btn" href="#">สั่งอาหารเลย</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Thai Delicious</h3>
+                <p>เรานำเสนอชุดอาหารสำหรับเด็กหอ</p>
+                <div class="social-icons">
+                    <a href="#">📱</a>
+                    <a href="#">📷</a>
+                    <a href="#">🐦</a>
+                    <a href="#">📘</a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>เมนูหลัก</h3>
+                <ul>
+                    <li><a href="#">หน้าแรก</a></li>
+                    <li><a href="#">เมนูอาหาร</a></li>
+                    <li><a href="#">โปรโมชั่น</a></li>
+                    <li><a href="#">เกี่ยวกับเรา</a></li>
+                    <li><a href="#">ติดต่อเรา</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>ติดต่อเรา</h3>
+                <ul>
+                    <li>📍 41 ตำบล ขามเรียง อำเภอกันทรวิชัย มหาสารคาม 44150</li>
+                    <li>📞 065-867-1389</li>
+                    <li>📞 02-123-4567</li>
+                    <li>📧 farm42485635@gmail.com</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>เวลาทำการ</h3>
+                <ul>
+                    <li>จันทร์ - ศุกร์: 10:00 - 22:00</li>
+                    <li>เสาร์ - อาทิตย์: 10:00 - 23:00</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2025 Thai Delicious. สงวนลิขสิทธิ์
+        </div>
+    </footer>
+
+    <!-- Shopping Cart -->
+    <div class="cart-overlay">
+        <div class="cart-container">
+            <div class="cart-header">
+                <h2>ตะกร้าสินค้า</h2>
+                <span class="cart-close">✖️</span>
+            </div>
+            <div class="cart-items">
+                <!-- Cart items will be added here -->
+            </div>
+            <div class="cart-total">
+                <div class="cart-total-row">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
